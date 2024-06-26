@@ -27,7 +27,8 @@ CREATE TABLE Users (
   Role NVARCHAR(50),
   Approved BIT NOT NULL DEFAULT 0
   FOREIGN KEY (ApartmentId) REFERENCES Apartments(Id)
-);               
+); 
+INSERT INTO Admins (Username, Password) VALUES ('admin', '$2a$12$MF38i8KYs9Geph5o3Ijga.g0Lrl55QHVoP7W4kcsHLL2EIk9opFB2');
 2. Build and run the backend container
     1. cd server
     2. vi .env  #Update the environment variables based on your network and passwords
