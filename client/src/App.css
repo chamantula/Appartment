@@ -1,0 +1,95 @@
+.App {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wishes {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 200px;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.advertisement {
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+  max-width: 800px; /* Increase width to accommodate all buttons */
+  margin-top: 20px;
+  text-align: center; /* Center the content */
+}
+
+.header {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.apartment-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  margin-top: -10px;
+}
+
+.options button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1; /* Ensure buttons take equal space */
+  margin: 0 5px; /* Add some margin between buttons */
+}
+
+.register-block {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-block form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-block form input,
+.register-block form select {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.register-block form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
