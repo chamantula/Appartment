@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [apartmentId, setApartmentId] = useState('');
   const [apartmentIds, setApartmentIds] = useState([]);
-
+  const [error, setError] = useState('');
   useEffect(() => {
     // Fetch apartment IDs from the server
     const fetchApartmentIds = async () => {
@@ -18,24 +18,31 @@ const Login = () => {
   }, []);
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+    try {
 
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password, apartmentId }),
-    });
-
-    const data = await response.json();
-    console.log(data);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+      	method: 'POST',
+      	headers: {
+        	'Content-Type': 'application/json',
+      	},
+      	body: JSON.stringify({ email, password, apartmentId }),
+      });
+      if (response.ok) {
+        onLoginSuccess();
+      } else {
+        const message = await response.text();
+        setError(`Failed to login: ${message}`);
+      }
+    } catch (err) {
+      console.error('Failed to login:', err);
+      setError('Failed to login');
+    }
   };
+    
 
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Email"
@@ -59,8 +66,8 @@ const Login = () => {
             </option>
           ))}
         </select>
-        <button type="submit">Login</button>
-      </form>
+        <button onClick={handleLogin}>Login</button>
+	{error && <p>{error}</p>}  
     </div>
   );
 };
