@@ -3,12 +3,14 @@ import Register from './components/Register';
 import Login from './components/Login';
 import AdminLogin from './components/AdminLogin';
 import AdminDashboard from './components/AdminDashboard';
+import UserPage from './components/UserPage';
 import './App.css';
 
 const App = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [isLoginLoggedIn, setIsLoginLoggedIn] = useState(false)
   const [showAdmin, setShowAdmin] = useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -51,6 +53,10 @@ const App = () => {
     setIsAdminLoggedIn(true);
     setShowAdmin(false);
   };
+  const handleLoginSuccess = () => {
+    setIsLoginLoggedIn(true);
+    setShowLogin(false);
+  };
 
   return (
     <div 
@@ -72,7 +78,8 @@ const App = () => {
           </div>
         )}
         {showRegister && <Register />}
-        {showLogin && <Login />}
+        {showLogin && <Login onLoginSuccess={handleLoginSuccess} />}
+	{isLoginLoggedIn && <UserPage />}
 	{showAdmin && <AdminLogin onLoginSuccess={handleAdminLoginSuccess} />}
         {isAdminLoggedIn && <AdminDashboard />}
       </div>
